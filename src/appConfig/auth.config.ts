@@ -1,0 +1,1 @@
+export const jwtSecret = 'token_test'
