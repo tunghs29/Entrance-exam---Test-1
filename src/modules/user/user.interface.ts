@@ -11,6 +11,11 @@ export interface ICreateUser extends IUser {
     password: string
 }
 
+export interface ISignIn {
+    email: string
+    password: string
+}
+
 export interface IRespFindByEmail extends IUser {
     id: number
     password: string

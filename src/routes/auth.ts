@@ -3,6 +3,7 @@ import { Application, Router } from 'express';
 import { BaseRoutesConfig } from '../common';
 import { UserController } from '../modules';
 import { jwtSecret } from "../appConfig";
+import { validator, validateSignUp, validateSignIn } from "../middleware";
 
 export class AuthRoutes extends BaseRoutesConfig {
     private readonly userController: UserController;
@@ -14,9 +15,9 @@ export class AuthRoutes extends BaseRoutesConfig {
     }
     
     configureRoutes(): Router {
-        this.getAppRouter.post('/sign-up', this.userController.signUp);
-        
-        this.getAppRouter.post('/sign-in', this.userController.signIn);
+        this.getAppRouter.post('/sign-up', validator.validateBody(validateSignUp), this.userController.signUp);
+    
+        this.getAppRouter.post('/sign-in', validator.validateBody(validateSignIn), this.userController.signIn);
         
         this.getAppRouter.post('/sign-out', jwt({
             secret: jwtSecret,

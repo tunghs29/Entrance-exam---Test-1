@@ -38,8 +38,7 @@ export class MySQLService extends BaseController {
                     deprecate(message) {
                         logger.fatal(message)
                     }
-                },
-                debug: true
+                }
             })
         } catch (e) {
             console.log(e)
